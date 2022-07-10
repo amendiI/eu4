@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 
-struct {
+typedef struct {
     char terrain;
     char climate;
     uint8_t trade_modifier;
@@ -10,7 +10,7 @@ struct {
     double unique_modifier;
 } province_data;
 
-struct {
+typedef struct {
     uint16_t province_id;
     province_data* data;
     uint16_t n_neighbors;

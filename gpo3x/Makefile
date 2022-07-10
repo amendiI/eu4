@@ -1,7 +1,8 @@
 CXX=g++
 WFLAGS=-Wall -Wextra
 IFLAGS=-I include/
-SRC_FILES=src/main.cpp
+SRC_FILES=src/main.cpp src/graph.cpp
+
 BUILDDIR=build
 
 main: builddir	
