@@ -6,7 +6,7 @@ int init_graph(graphnode*** out) {
 
     for (uint16_t i = 0; i < 4940; i++) {
         province_data* pdata = new province_data{};
-        graph[i] = new graphnode{i, pdata, 0, NULL};
+        graph[i] = new graphnode{i, pdata, 0, 0, NULL};
     }
     *out = graph;
     return 0;

@@ -13,6 +13,7 @@ typedef struct {
 typedef struct {
     uint16_t province_id;
     province_data* data;
+    double score;
     uint16_t n_neighbors;
     uint16_t* neighbors;
 } graphnode;
