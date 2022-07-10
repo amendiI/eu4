@@ -1,11 +1,11 @@
 CXX=g++
 WFLAGS=-Wall -Wextra
-#LFLAGS=
+IFLAGS=-I include/
 SRC_FILES=src/main.cpp
 BUILDDIR=build
 
 main: builddir	
-	$(CXX) $(SRC_FILES) -o $(BUILDDIR)/main
+	$(CXX) $(IFLAGS) $(SRC_FILES) -o $(BUILDDIR)/main
 
 
 builddir:
