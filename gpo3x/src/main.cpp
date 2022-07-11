@@ -2,7 +2,7 @@
 
 #include "graph.hpp"
 #include "graphtypes.hpp"
-#include "neighbors.hpp"
+#include "fileinput.hpp"
 
 int main() {
     graphnode** graph;

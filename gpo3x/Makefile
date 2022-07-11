@@ -2,7 +2,7 @@ CXX=g++
 WFLAGS=-Wall -Wextra
 DEBUG_FLAGS=-g -O0
 IFLAGS=-I include/
-SRC_FILES=src/main.cpp src/graph.cpp src/neighbors.cpp
+SRC_FILES=src/main.cpp src/graph.cpp src/fileinput.cpp
 
 BUILDDIR=build
 
