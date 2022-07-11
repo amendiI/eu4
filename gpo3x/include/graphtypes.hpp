@@ -1,9 +1,36 @@
 #pragma once
 #include <stdint.h>
 
+typedef enum {
+    UNDEFINED = 0,
+    GRASSLANDS,
+    FARMLANDS,
+    DRYLANDS,
+    COASTLINE,
+    SAVANNAH,
+    WOODS,
+    FOREST,
+    HIGHLANDS,
+    STEPPES,
+    HILLS,
+    MARSH,
+    COASTAL_DESERT,
+    JUNGLE,
+    MOUNTAIN,
+    DESERT,
+    GLACIAL
+} terrain;
+
+typedef enum {
+    TEMPERATE = 0,
+    ARID,
+    ARCTIC,
+    TROPICAL
+} climate;
+
 typedef struct {
-    char terrain;
-    char climate;
+    terrain prov_terrain;
+    climate prov_climate;
     uint8_t trade_modifier;
     uint8_t cot;
     double goods_modifier;
