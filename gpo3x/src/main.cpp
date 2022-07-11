@@ -8,7 +8,7 @@ int main() {
     init_graph(&graph);
     dealloc_graph(graph);
     int i = 45;
-    char c = 'c' ;
+    char c = 'c' ;  
     std::cout << "Hello World!\n";
     
     return 0;   
