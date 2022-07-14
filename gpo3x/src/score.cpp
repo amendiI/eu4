@@ -121,7 +121,7 @@ int getscore(graphnode** graph, uint16_t id,uint16_t depth){
         
         province_score += get_def_value(province->data) /10;
         province_score *= get_dev_mofier(province->data);
-        
+        province_score += province->data->unique_modifier;
         total_score += province_score;
         traited_province.emplace_back(id);
 
@@ -132,7 +132,7 @@ int getscore(graphnode** graph, uint16_t id,uint16_t depth){
                     traited_neighbor = true ;
                 }
             }
-            //si on a pas trouve le voison on l'ajoute
+            //si on a pas trouve le voisin on l'ajoute
             if(traited_neighbor)
                 list.emplace_back(province->neighbors[i]);
         }
