@@ -40,3 +40,105 @@ int get_neighbors(graphnode** graph) {
     }
     return 0;
 }
+
+int get_terrain(graphnode** graph) {
+    std::ifstream file("../data/neighbors.txt");
+    std::string str;
+    terrain current = UNDEFINED;
+    while(std::getline(file, str)) {
+        if (str.size() == 0) {
+            continue;
+        }
+        if (str.last() == 125) { //ascii "}"
+            continue;
+        }
+        if (str.last() == 123) { //ascii "{"
+            size_t space = str.find(" ");
+            std::string land = str.substr(0, space);
+            switch (land) {
+                case "grasslands":
+                    current = GRASSLANDS;
+                    break;
+                case "farmlands":
+                    current = FARMLANDS;
+                    break;
+                case "drylands":
+                    current = DRYLANDS;
+                    break;
+                case "coastline":
+                    current = COASTLINE;
+                    break;
+                case "savannah":
+                    current = SAVANNAH;
+                    break;
+                case "woods":
+                    current = WOODS;
+                    break;
+                case "forest":
+                    current = FOREST;
+                    break;
+                case "highlands":
+                    current = HIGHLANDS;
+                    break;
+                case "steppe":
+                    current = STEPPES;
+                    break;
+                case "hills":
+                    current = HILLS;
+                    break;
+                case "marsh":
+                    current = MARSH;
+                    break;
+                case "coastal_desert":
+                    current = COASTAL_DESERT;
+                    break;
+                case "jungle":
+                    current = JUNGLE;
+                    break;
+                case "mountain":
+                    current = MOUNTAIN;
+                    break;
+                case "desert":
+                    current = DESERT;
+                    break;
+                case "glacier":
+                    current = GLACIAL;
+                    break;
+                default:
+                    current = UNDEFINED;
+                    std::wout << "Unexpected terrain: " << land << "\n";
+            }
+        } else {
+            //Read provinces
+        }
+    }
+}
+
+int get_climate(graphnode** graph) {
+
+}
+
+int get_colors(uint16_t** table) {
+    std::ifstream file("../data/definition.csv");
+    std::string str;
+    uint16_t sep[4];
+    uint8_t count = 0;
+
+    std::getline(file, str);
+    while (std::getline(file, str)) {
+        count = 0;
+        for (uint16_t i = 0; i < str.size(); i++) {
+            if (str[i] == 59) { //ascii 59: ";"
+                sep[count] = i;
+            }
+        }
+        uint16_t* entry = new uint16_t[4];
+        entry[0] = std::stoi(str.substr(0, sep[0]));
+        entry[1] = std::stoi(str.substr(sep[0]+1, sep[1]-sep[0]-1));
+        entry[2] = std::stoi(str.substr(sep[1]+1, sep[2]-sep[1]-1));
+        entry[3] = std::stoi(str.substr(sep[2]+1, sep[3]-sep[2]-1));
+
+        table[entry[0]] = entry;
+    }
+    return 0;
+}
