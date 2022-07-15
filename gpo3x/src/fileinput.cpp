@@ -1,5 +1,6 @@
 #include "graphtypes.hpp"
 
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <algorithm>
@@ -49,13 +50,19 @@ int get_terrain(graphnode** graph) {
         if (str.size() == 0) {
             continue;
         }
-        if (str.last() == 125) { //ascii "}"
+        while (str.back() == 20) { //ascii " "
+            str.pop_back();
+        }
+        if (str.size() == 0) {
             continue;
         }
-        if (str.last() == 123) { //ascii "{"
+        if (str.back() == 125) { //ascii "}"
+            continue;
+        }
+        if (str.back() == 123) { //ascii "{"
             size_t space = str.find(" ");
             std::string land = str.substr(0, space);
-            switch (land) {
+            /*switch (land) {
                 case "grasslands":
                     current = GRASSLANDS;
                     break;
@@ -106,20 +113,21 @@ int get_terrain(graphnode** graph) {
                     break;
                 default:
                     current = UNDEFINED;
-                    std::wout << "Unexpected terrain: " << land << "\n";
-            }
+                    std::cout << "WARNING: Unexpected terrain: " << land << "\n";
+            }*/
         } else {
             //Read provinces
             while (str.size() != 0) {
                 size_t space = str.find(" ");
                 if (space != 0) {
                     uint16_t id = std::stoi(str.substr(0, space));
-                    graph[id]->data.terrain = current;
+                    graph[id]->data->prov_terrain = current;
                 }
                 str.erase(0, space+1);
             }
         }
     }
+    return 0;
 }
 
 int get_climate(graphnode** graph) {
@@ -130,13 +138,19 @@ int get_climate(graphnode** graph) {
         if (str.size() == 0) {
             continue;
         }
-        if (str.last() == 125) { //ascii "}"
+        while (str.back() == 20) { //ascii " "
+            str.pop_back();
+        }
+        if (str.size() == 0) {
             continue;
         }
-        if (str.last() == 123) { //ascii "{"
+        if (str.back() == 125) { //ascii "}"
+            continue;
+        }
+        if (str.back() == 123) { //ascii "{"
             size_t space = str.find(" ");
             std::string land = str.substr(0, space);
-            switch (land) {
+            /*switch (land) {
                 case "tropical":
                     current = TROPICAL;
                     break;
@@ -149,19 +163,20 @@ int get_climate(graphnode** graph) {
                 default:
                     current = TEMPERATE;
                     std::cout << "Other climate: " << land << "\n";
-            }
+            }*/
         } else if (current != TEMPERATE) {
             //Read provinces
             while (str.size() != 0) {
                 size_t space = str.find(" ");
                 if (space != 0) {
                     uint16_t id = std::stoi(str.substr(0, space));
-                    graph[id]->data.climate = current;
+                    graph[id]->data->prov_climate = current;
                 }
                 str.erase(0, space+1);
             }
         }
     }
+    return 0;
 }
 
 int get_colors(uint16_t** table) {
