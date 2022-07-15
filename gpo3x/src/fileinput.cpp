@@ -62,59 +62,42 @@ int get_terrain(graphnode** graph) {
         if (str.back() == 123) { //ascii "{"
             size_t space = str.find(" ");
             std::string land = str.substr(0, space);
-            /*switch (land) {
-                case "grasslands":
-                    current = GRASSLANDS;
-                    break;
-                case "farmlands":
-                    current = FARMLANDS;
-                    break;
-                case "drylands":
-                    current = DRYLANDS;
-                    break;
-                case "coastline":
-                    current = COASTLINE;
-                    break;
-                case "savannah":
-                    current = SAVANNAH;
-                    break;
-                case "woods":
-                    current = WOODS;
-                    break;
-                case "forest":
-                    current = FOREST;
-                    break;
-                case "highlands":
-                    current = HIGHLANDS;
-                    break;
-                case "steppe":
-                    current = STEPPES;
-                    break;
-                case "hills":
-                    current = HILLS;
-                    break;
-                case "marsh":
-                    current = MARSH;
-                    break;
-                case "coastal_desert":
-                    current = COASTAL_DESERT;
-                    break;
-                case "jungle":
-                    current = JUNGLE;
-                    break;
-                case "mountain":
-                    current = MOUNTAIN;
-                    break;
-                case "desert":
-                    current = DESERT;
-                    break;
-                case "glacier":
-                    current = GLACIAL;
-                    break;
-                default:
-                    current = UNDEFINED;
-                    std::cout << "WARNING: Unexpected terrain: " << land << "\n";
-            }*/
+            if (!land.compare("grasslands")) {
+                current = GRASSLANDS;
+            } else if (!land.compare("farmlands")) {
+                current = FARMLANDS;
+            } else if (!land.compare("drylands")) {
+                current = DRYLANDS;
+            } else if (!land.compare("coastline")) {
+                current = COASTLINE;
+            } else if (!land.compare("savannah")) {
+                current = SAVANNAH;
+            } else if (!land.compare("woods")) {
+                current = WOODS;
+            } else if (!land.compare("forest")) {
+                current = FOREST;
+            } else if (!land.compare("highlands")) {
+                current = HIGHLANDS;
+            } else if (!land.compare("steppe")) {
+                current = STEPPES;
+            } else if (!land.compare("hills")) {
+                current = HILLS;
+            } else if (!land.compare("marsh")) {
+                current = MARSH;
+            } else if (!land.compare("coastal_desert")) {
+                current = COASTAL_DESERT;
+            } else if (!land.compare("jungle")) {
+                current = JUNGLE;
+            } else if (!land.compare("mountain")) {
+                current = MOUNTAIN;
+            } else if (!land.compare("desert")) {
+                current = DESERT;
+            } else if (!land.compare("glacier")) {
+                current = GLACIAL;
+            } else {
+                current = UNDEFINED;
+                std::cout << "WARNING: Unexpected terrain: " << land << "\n";
+            }
         } else {
             //Read provinces
             while (str.size() != 0) {
@@ -150,20 +133,16 @@ int get_climate(graphnode** graph) {
         if (str.back() == 123) { //ascii "{"
             size_t space = str.find(" ");
             std::string land = str.substr(0, space);
-            /*switch (land) {
-                case "tropical":
-                    current = TROPICAL;
-                    break;
-                case "arid":
-                    current = ARID;
-                    break;
-                case "arctic":
-                    current = ARCTIC;
-                    break;
-                default:
-                    current = TEMPERATE;
-                    std::cout << "Other climate: " << land << "\n";
-            }*/
+            if (!land.compare("tropical")) {
+                current = TROPICAL;
+            } else if (!land.compare("arid")) {
+                current = ARID;
+            } else if (!land.compare("arctic")) {
+                current = ARCTIC;
+            } else {
+                current = TEMPERATE;
+                std::cout << "Not considering climate " << land << "\n";
+            }
         } else if (current != TEMPERATE) {
             //Read provinces
             while (str.size() != 0) {
