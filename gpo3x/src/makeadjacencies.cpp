@@ -8,6 +8,7 @@
 #include <iostream>
 #include "constants.hpp"
 #include <fstream>
+#include <cstring>
 
 
 unsigned char* readBMP(char* filename)
@@ -88,12 +89,14 @@ uint16_t get_id_by_color(uint16_t provinces[N_PROV][4], pixelcolor p){
             return provinces[i][0];
         
     }
-    
+    return -1; //erreur 
 }
 
 uint16_t makeadjacencies(){
-
-    unsigned char* data=readBMP("../data/provinces.bmp");
+    char * nom_fichier;
+    nom_fichier = (char*)(sizeof(char)*21);
+    std::strcpy(nom_fichier,"../data/provinces.bmp");
+    unsigned char* data=readBMP(nom_fichier);
     uint16_t color[N_PROV][4];
 
     pixelcolor pcolor;
