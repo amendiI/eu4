@@ -42,7 +42,7 @@ int get_neighbors(graphnode** graph) {
 }
 
 int get_terrain(graphnode** graph) {
-    std::ifstream file("../data/neighbors.txt");
+    std::ifstream file("../data/terrain.txt");
     std::string str;
     terrain current = UNDEFINED;
     while(std::getline(file, str)) {
@@ -110,12 +110,58 @@ int get_terrain(graphnode** graph) {
             }
         } else {
             //Read provinces
+            while (str.size() != 0) {
+                size_t space = str.find(" ");
+                if (space != 0) {
+                    uint16_t id = std::stoi(str.substr(0, space));
+                    graph[id]->data.terrain = current;
+                }
+                str.erase(0, space+1);
+            }
         }
     }
 }
 
 int get_climate(graphnode** graph) {
-
+    std::ifstream file("../data/climate.txt");
+    std::string str;
+    climate current = TEMPERATE;
+    while(std::getline(file, str)) {
+        if (str.size() == 0) {
+            continue;
+        }
+        if (str.last() == 125) { //ascii "}"
+            continue;
+        }
+        if (str.last() == 123) { //ascii "{"
+            size_t space = str.find(" ");
+            std::string land = str.substr(0, space);
+            switch (land) {
+                case "tropical":
+                    current = TROPICAL;
+                    break;
+                case "arid":
+                    current = ARID;
+                    break;
+                case "arctic":
+                    current = ARCTIC;
+                    break;
+                default:
+                    current = TEMPERATE;
+                    std::cout << "Other climate: " << land << "\n";
+            }
+        } else if (current != TEMPERATE) {
+            //Read provinces
+            while (str.size() != 0) {
+                size_t space = str.find(" ");
+                if (space != 0) {
+                    uint16_t id = std::stoi(str.substr(0, space));
+                    graph[id]->data.climate = current;
+                }
+                str.erase(0, space+1);
+            }
+        }
+    }
 }
 
 int get_colors(uint16_t** table) {
