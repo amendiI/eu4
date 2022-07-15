@@ -4,6 +4,8 @@
 #include "graphtypes.hpp"
 #include "fileinput.hpp"
 
+#include "makeadjacencies.hpp"
+
 int main() {
     graphnode** graph;
     init_graph(&graph);
@@ -14,5 +16,7 @@ int main() {
     char c = 'c' ;  
     std::cout << "Hello World!\n";
     
+    makeadjacencies();
     return 0;   
 }
+
