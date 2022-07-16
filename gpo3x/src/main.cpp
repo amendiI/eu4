@@ -5,7 +5,7 @@
 #include "fileinput.hpp"
 
 #include "makeadjacencies.hpp"
-
+    
 int main() {
     graphnode** graph;
     /*init_graph(&graph);
