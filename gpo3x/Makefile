@@ -1,7 +1,7 @@
 CXX=g++
 WFLAGS=-Wall -Wextra 
 DEBUG_FLAGS=-g -O0 
-IFLAGS=-I include/ -std=c++17
+IFLAGS=-I include/ -std=c++17 -fstack-protector
 SRC_FILES=src/*.cpp
 
 BUILDDIR=build

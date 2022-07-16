@@ -162,14 +162,17 @@ int get_colors(uint16_t** table) {
     std::ifstream file("../data/definition.csv");
     std::string str;
     uint16_t sep[4];
-    uint8_t count = 0;
+    uint16_t count = 0;
 
     std::getline(file, str);
+    count = 0;
     while (std::getline(file, str)) {
-        count = 0;
+        uint8_t index_sep=0;
         for (uint16_t i = 0; i < str.size(); i++) {
+            
             if (str[i] == 59) { //ascii 59: ";"
-                sep[count] = i;
+                sep[index_sep] = i;
+                index_sep++;
             }
         }
         uint16_t* entry = new uint16_t[4];
@@ -178,7 +181,8 @@ int get_colors(uint16_t** table) {
         entry[2] = std::stoi(str.substr(sep[1]+1, sep[2]-sep[1]-1));
         entry[3] = std::stoi(str.substr(sep[2]+1, sep[3]-sep[2]-1));
 
-        table[entry[0]] = entry;
+        table[count] = entry;
+        count++;
     }
     return 0;
 }
