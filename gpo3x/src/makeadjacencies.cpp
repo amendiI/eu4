@@ -49,11 +49,12 @@ unsigned char** readBMP(char* filename)
             tmp = data[i][j];
             data[i][j] = data[i][j+2];
             data[i][j+2] = tmp;
-
-            //std::cout << "R: "<< (int)data[j] << " G: " << (int)data[j+1]<< " B: " << (int)data[j+2]<< std::endl;
         }
     }
     fclose(f);
+    
+    std::cout << "R: "<< (int)data[i][0] << " G: " << (int)data[i][0+1]<< " B: " << (int)data[i][0+2]<< std::endl;
+    
     return data;
 }
 
@@ -68,7 +69,7 @@ pixelcolor getpixelcolor(unsigned char** data, uint16_t x, uint16_t y ){
     pixelcolor p ;
 
     p.R = (uint16_t)data[y][3*x];
-    p.R = (uint16_t)data[y][3*x+1];
+    p.G = (uint16_t)data[y][3*x+1];
     p.B = (uint16_t)data[y][3*x+2];
     return p;
 
@@ -163,10 +164,10 @@ uint16_t makeadjacencies(){
                 }
             }
         }
-        file << i << ":";
+        file << i+1 << ":";
         for (int j = 0; j < adj_colors.size(); j++)
         {
-            file << get_id_by_color(color, adj_colors[j]);
+            file << get_id_by_color(color, adj_colors[j])<< " ";
         }
         file << std::endl;
         

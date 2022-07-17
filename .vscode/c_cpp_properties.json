@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "/usr/include/c++/11/**",
-                "/home/amendil/eu4/eu4/gpo3x/include"
+                "/home/amendil/eu4/gpo3x/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
